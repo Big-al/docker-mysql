@@ -1,0 +1,15 @@
+version: '3'
+services:
+    mysql:
+        container_name: ${DOCKER_PROJECT_NAME}_mysql
+        build:
+            context: ./
+            dockerfile: ./.docker/mysql/DockerFile
+        ports:
+            - ${DOCKER_IP}:3306:3306
+        environment:
+            MYSQL_DATABASE: ${DOCKER_PROJECT_NAME}
+            MYSQL_USER: ${DOCKER_PROJECT_NAME}
+            MYSQL_PASSWORD: secret
+            MYSQL_ROOT_PASSWORD: root
+        command: mysqld --sql_mode=""
